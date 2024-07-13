@@ -1,0 +1,10 @@
+.searchbar {
+  height: 5vh;
+  width: 50vw;
+  font-size: 1rem;
+  padding-left: 0.5rem;
+}
+
+.searchbar::before{
+  content: "🔎";
+}
