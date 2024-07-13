@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  justify-content: center;
+  box-shadow: 0.5px 0.5px 10px var(--primary-border);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1440px;
+  padding: 1rem;
+  height: 16vh;
+  width: 100%;
+}
