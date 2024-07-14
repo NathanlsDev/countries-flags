@@ -1,0 +1,10 @@
+@import "../../index.css";
+
+.menu {
+  padding: 0.5rem;
+  width: 45vw;
+  height: 5vh;
+  border-radius: 5px;
+  box-shadow: var(--primary-border);
+  font-weight: 600;
+}
