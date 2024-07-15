@@ -1,14 +1,15 @@
 import { Header } from "./components/Header";
 import { Search } from "./components/Search/Search";
+import { Menu } from "./components/Menu";
 
 function App() {
   return (
     <>
       <Header />
       <main>
-        <section>
+        <section className="search-section">
           <Search />
-          {/* <Menu /> */}
+          <Menu />
         </section>
       </main>
     </>
