@@ -1,7 +1,9 @@
+@import "../../index.css";
+
 .header {
   display: flex;
   justify-content: center;
-  box-shadow: 0.5px 0.5px 10px var(--primary-border);
+  box-shadow: var(--primary-border);
 }
 
 .content {
