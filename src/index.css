@@ -2,30 +2,51 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  outline: none;
+  border: none;
 }
 
 :root {
-  --secondary-color: hsl(209, 23%, 22%);
-  --secondary-background: hsl(207, 26%, 17%);
-  --primary-text: hsl(200, 15%, 8%);
-  --primary-border: hsl(0, 0%, 52%);
-  --primary-background: hsl(0, 0%, 98%);
-  --primary-color: hsl(0, 0%, 100%);
+  --secondary-color: #2b3945;
+  --secondary-background: #202c37;
+  --primary-text: #111517;
+  --primary-border: #959da533 0px 8px 24px;
+  --primary-background: #fafafa;
+  --primary-color: #ffffff;
+}
+
+body {
+  background-color: var(--primary-background);
 }
 
 body,
 input,
+select,
 button {
   font-family: "Nunito Sans";
+  font-size: 1rem;
 }
 
 h1 {
   font-weight: 800;
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
 main {
-  background-color: red;
+  display: flex;
+  justify-content: center;
+}
+
+span {
+  background-color: var(--primary-color);
+}
+
+.search-section {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 2rem;
+  padding: 0 1rem;
+  margin-top: 2rem;
   max-width: 1440px;
   width: 100%;
 }
