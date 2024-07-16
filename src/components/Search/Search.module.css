@@ -1,10 +1,23 @@
-.searchbar {
+@import "../../index.css";
+
+.element {
+  display: flex;
+  border-radius: 8px;
+  padding: 0.5rem;
+  background-color: white;
+  box-shadow: var(--primary-border);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
   height: 5vh;
-  width: 50vw;
-  font-size: 1rem;
   padding-left: 0.5rem;
 }
 
-.searchbar::before{
-  content: "🔎";
+.searchbar {
+  height: 5vh;
+  width: 100%;
+  font-size: 1rem;
+  padding-left: 0.5rem;
 }
