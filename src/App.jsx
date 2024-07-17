@@ -1,6 +1,7 @@
 import { Header } from "./components/Header";
 import { Search } from "./components/Search/Search";
 import { Menu } from "./components/Menu";
+import { CountryFlag } from "./components/CountryFlag";
 
 function App() {
   return (
@@ -11,6 +12,9 @@ function App() {
           <Search />
           <Menu />
         </section>
+        <ul className="flags-list">
+          <CountryFlag />
+        </ul>
       </main>
     </>
   );
