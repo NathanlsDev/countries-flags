@@ -1,0 +1,22 @@
+@import "../../index.css";
+
+.card {
+  max-width: 350px;
+  box-shadow: var(--primary-border);
+  border-radius: 8px;
+}
+
+.flag {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  width: 100%;
+}
+
+.infos {
+  padding: 2rem;
+  line-height: 1.5;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+}
