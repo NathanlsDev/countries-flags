@@ -25,6 +25,7 @@ select,
 button {
   font-family: "Nunito Sans";
   font-size: 1rem;
+  color: var(--primary-text);
 }
 
 h1 {
@@ -35,10 +36,17 @@ h1 {
 main {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 span {
   background-color: var(--primary-color);
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: var(--primary-text);
 }
 
 .search-section {
@@ -49,4 +57,14 @@ span {
   margin-top: 2rem;
   max-width: 1440px;
   width: 100%;
+}
+
+.flags-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  gap: 4rem;
+  padding: 1rem;
+  align-items: center;
+  list-style: none;
 }
