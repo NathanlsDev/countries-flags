@@ -61,10 +61,11 @@ a:visited {
 
 .flags-list {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
+  list-style: none;
   margin-top: 2rem;
   gap: 4rem;
   padding: 1rem;
-  align-items: center;
-  list-style: none;
 }
