@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+
 import styles from "./CountryFlag.module.css";
 
 export function CountryFlag({ country }) {
@@ -25,7 +26,7 @@ export function CountryFlag({ country }) {
         </p>
         <p className={styles.text}>
           <strong>Capital: </strong>
-          {capital}
+          {capital ? capital.join(", ") : "N/A"}
         </p>
       </section>
     </li>
@@ -43,6 +44,6 @@ CountryFlag.propTypes = {
     }).isRequired,
     population: PropTypes.number.isRequired,
     region: PropTypes.string.isRequired,
-    capital: PropTypes.arrayOf(PropTypes.string).isRequired,
+    capital: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
 };
