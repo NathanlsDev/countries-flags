@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { Header } from "./components/Header";
 import { Search } from "./components/Search/Search";
 import { Menu } from "./components/Menu/Menu";
 import { CountryFlag } from "./components/CountryFlag";
+import { CountryDetails } from "./components/CountryDetails";
 
 import { getCountries } from "./services/api";
 
@@ -76,20 +78,31 @@ function App() {
   };
 
   return (
-    <>
+    <Router>
       <Header />
       <main>
         <section className="search-section">
           <Search onSearch={handleSearch} />
           <Menu onRegionChange={handleRegionChange} />
         </section>
-        <ul className="flags-list">
-          {displayedCountries.map((country) => (
-            <CountryFlag key={country.cca3} country={country} />
-          ))}
-        </ul>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ul className="flags-list">
+                {displayedCountries.map((country) => (
+                  <CountryFlag key={country.cca3} country={country} />
+                ))}
+              </ul>
+            }
+          />
+          <Route
+            path="/country/:cca3"
+            element={<CountryDetails allCountries={allCountries} />}
+          />
+        </Routes>
       </main>
-    </>
+    </Router>
   );
 }
 
