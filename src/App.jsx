@@ -4,6 +4,7 @@ import { Header } from "./components/Header";
 import { Search } from "./components/Search/Search";
 import { Menu } from "./components/Menu";
 import { CountryFlag } from "./components/CountryFlag";
+
 import { getCountries } from "./services/api";
 
 function App() {
@@ -50,17 +51,28 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleSearch = (query) => {
+    if (query === "") {
+      setDisplayedCountries(allCountries.slice(0, offset + limit));
+    } else {
+      const filteredCountries = allCountries.filter((country) =>
+        country.name.common.toLowerCase().includes(query.toLowerCase())
+      );
+      setDisplayedCountries(filteredCountries);
+    }
+  };
+
   return (
     <>
       <Header />
       <main>
         <section className="search-section">
-          <Search />
+          <Search onSearch={handleSearch} />
           <Menu />
         </section>
         <ul className="flags-list">
-          {displayedCountries.map((country, id) => (
-            <CountryFlag key={country.cca3 + id} country={country} />
+          {displayedCountries.map((country) => (
+            <CountryFlag key={country.cca3} country={country} />
           ))}
         </ul>
       </main>
