@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import { Header } from "./components/Header";
 import { Search } from "./components/Search/Search";
-import { Menu } from "./components/Menu";
+import { Menu } from "./components/Menu/Menu";
 import { CountryFlag } from "./components/CountryFlag";
 
 import { getCountries } from "./services/api";
@@ -62,13 +62,24 @@ function App() {
     }
   };
 
+  const handleRegionChange = (region) => {
+    if (region === "") {
+      setDisplayedCountries(allCountries.slice(0, offset + limit));
+    } else {
+      const filteredCountries = allCountries.filter(
+        (country) => country.region === region
+      );
+      setDisplayedCountries(filteredCountries);
+    }
+  };
+
   return (
     <>
       <Header />
       <main>
         <section className="search-section">
           <Search onSearch={handleSearch} />
-          <Menu />
+          <Menu onRegionChange={handleRegionChange} />
         </section>
         <ul className="flags-list">
           {displayedCountries.map((country) => (
