@@ -11,6 +11,8 @@ function App() {
   const [allCountries, setAllCountries] = useState([]);
   const [displayedCountries, setDisplayedCountries] = useState([]);
   const [offset, setOffset] = useState(0);
+  const [selectedRegion, setSelectedRegion] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const limit = 8;
 
   useEffect(() => {
@@ -27,7 +29,7 @@ function App() {
     if (offset === 0) return;
 
     const loadMoreCountries = () => {
-      const moreCountries = allCountries.slice(offset, offset + limit);
+      const moreCountries = filteredCountries().slice(offset, offset + limit);
       setDisplayedCountries((prevCountries) => [
         ...prevCountries,
         ...moreCountries,
@@ -51,26 +53,26 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleSearch = (query) => {
-    if (query === "") {
-      setDisplayedCountries(allCountries.slice(0, offset + limit));
-    } else {
-      const filteredCountries = allCountries.filter((country) =>
-        country.name.common.toLowerCase().includes(query.toLowerCase())
+  useEffect(() => {
+    setDisplayedCountries(filteredCountries().slice(0, limit));
+  }, [selectedRegion, searchQuery]);
+
+  const filteredCountries = () => {
+    return allCountries.filter((country) => {
+      return (
+        (selectedRegion === "" || country.region === selectedRegion) &&
+        (searchQuery === "" ||
+          country.name.common.toLowerCase().includes(searchQuery.toLowerCase()))
       );
-      setDisplayedCountries(filteredCountries);
-    }
+    });
+  };
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
   };
 
   const handleRegionChange = (region) => {
-    if (region === "") {
-      setDisplayedCountries(allCountries.slice(0, offset + limit));
-    } else {
-      const filteredCountries = allCountries.filter(
-        (country) => country.region === region
-      );
-      setDisplayedCountries(filteredCountries);
-    }
+    setSelectedRegion(region);
   };
 
   return (
