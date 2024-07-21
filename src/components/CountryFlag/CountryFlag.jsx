@@ -1,34 +1,36 @@
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import styles from "./CountryFlag.module.css";
 
 export function CountryFlag({ country }) {
-  const { name, flags, population, region, capital } = country;
-
+  const { name, flags, population, region, capital, cca3 } = country;
   return (
     <li className={styles.card}>
-      <figure>
-        <a href="#">
-          <img className={styles.flag} src={flags.svg} alt={flags.alt} />
-        </a>
-      </figure>
-      <section className={styles.infos}>
-        <h1 className={styles.title}>
-          <a href="#">{name.common}</a>
-        </h1>
-        <p className={styles.text}>
-          <strong>Population: </strong>
-          {population.toLocaleString()}
-        </p>
-        <p className={styles.text}>
-          <strong>Region: </strong>
-          {region}
-        </p>
-        <p className={styles.text}>
-          <strong>Capital: </strong>
-          {capital ? capital.join(", ") : "N/A"}
-        </p>
-      </section>
+      <Link to={`/country/${cca3}`}>
+        <figure>
+          <img
+            className={styles.flag}
+            src={flags.svg}
+            alt={flags.alt || `Flag of ${name.common}`}
+          />
+        </figure>
+        <section className={styles.infos}>
+          <h1 className={styles.title}>{name.common}</h1>
+          <p className={styles.text}>
+            <strong>Population: </strong>
+            {population.toLocaleString()}
+          </p>
+          <p className={styles.text}>
+            <strong>Region: </strong>
+            {region}
+          </p>
+          <p className={styles.text}>
+            <strong>Capital: </strong>
+            {capital || "N/A"}
+          </p>
+        </section>
+      </Link>
     </li>
   );
 }
@@ -45,5 +47,6 @@ CountryFlag.propTypes = {
     population: PropTypes.number.isRequired,
     region: PropTypes.string.isRequired,
     capital: PropTypes.arrayOf(PropTypes.string),
+    cca3: PropTypes.string.isRequired,
   }).isRequired,
 };
