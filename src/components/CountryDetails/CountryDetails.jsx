@@ -1,10 +1,11 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import styles from "./CountryDetails.module.css";
 
 export function CountryDetails({ allCountries }) {
   const { cca3 } = useParams();
+  const navigate = useNavigate();
   const country = allCountries.find((country) => country.cca3 === cca3);
 
   if (!country) {
@@ -36,16 +37,27 @@ export function CountryDetails({ allCountries }) {
   };
 
   const getBorderCountries = (country) => {
-    if (!country.borders) return "Country has no borders.";
-    const countryBorders = Object.values(country.borders);
-    return countryBorders;
+    if (!country.borders) return "Has no border countries.";
+
+    return country.borders.map((borderCca3) => {
+      const borderCountry = allCountries.find(
+        (country) => country.cca3 === borderCca3
+      );
+      
+      return (
+        <Link key={borderCca3} to={`/country/${borderCca3}`}>
+          {borderCountry.name.common}
+        </Link>
+      );
+    });
   };
 
   return (
     <div className={styles.test}>
-      <h1>{country.name.common}</h1>
+      <button onClick={() => navigate(-1)}>Back</button>
       <img src={country.flags.svg} alt={`Flag of ${country.name.common}`} />
-      <p><strong>Native Name:</strong> {getNativeName(country)} </p>
+      <h1>{country.name.common}</h1>
+      <p><strong>Native Name:</strong> {getNativeName(country)}</p>
       <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
       <p><strong>Region:</strong> {country.region}</p>
       <p><strong>Sub Region:</strong> {country.subregion || "N/A"}</p>
@@ -53,7 +65,9 @@ export function CountryDetails({ allCountries }) {
       <p><strong>Top Level Domain:</strong> {getTopLevelDomain(country)}</p>
       <p><strong>Currencies:</strong> {getCurrency(country)}</p>
       <p><strong>Languages:</strong> {getLanguages(country)}</p>
-      <div><strong>Border Countries:</strong> {getBorderCountries(country)}</div>
+      <div>
+        <strong>Border Countries:</strong> {getBorderCountries(country)}
+      </div>
     </div>
   );
 }
