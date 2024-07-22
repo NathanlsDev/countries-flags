@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 
 import { Header } from "./components/Header";
 import { Search } from "./components/Search/Search";
@@ -9,13 +9,16 @@ import { CountryDetails } from "./components/CountryDetails";
 
 import { getCountries } from "./services/api";
 
-function App() {
+function CountryFlagsApp() { 
   const [allCountries, setAllCountries] = useState([]);
   const [displayedCountries, setDisplayedCountries] = useState([]);
   const [offset, setOffset] = useState(0);
   const [selectedRegion, setSelectedRegion] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [showSearchSection, setShowSearchSection] = useState(true);
+
   const limit = 8;
+  const pathLocation = useLocation();
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -69,6 +72,12 @@ function App() {
     });
   };
 
+  useEffect(() => {
+    return pathLocation.pathname !== "/"
+      ? setShowSearchSection(false)
+      : setShowSearchSection(true);
+  }, [pathLocation]);
+
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
@@ -78,13 +87,15 @@ function App() {
   };
 
   return (
-    <Router>
+    <>
       <Header />
       <main>
-        <section className="search-section">
-          <Search onSearch={handleSearch} />
-          <Menu onRegionChange={handleRegionChange} />
-        </section>
+        {showSearchSection && (
+          <section className="search-section">
+            <Search onSearch={handleSearch} />
+            <Menu onRegionChange={handleRegionChange} />
+          </section>
+        )}
         <Routes>
           <Route
             path="/"
@@ -102,6 +113,14 @@ function App() {
           />
         </Routes>
       </main>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <CountryFlagsApp />
     </Router>
   );
 }
