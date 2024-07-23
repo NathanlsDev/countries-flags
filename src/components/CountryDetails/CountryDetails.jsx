@@ -1,5 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import backIcon from "../../../public/arrow-back.svg";
 
 import styles from "./CountryDetails.module.css";
 
@@ -36,6 +37,13 @@ export function CountryDetails({ allCountries }) {
     return mainLanguages.slice(0, 3).join(", ");
   };
 
+  const formatCapitals = (country) => {
+    if (!country.capital) return;
+    return country.capital.length > 1
+      ? country.capital.join(", ")
+      : country.capital;
+  };
+
   const getBorderCountries = (country) => {
     if (!country.borders) return "Has no border countries.";
 
@@ -43,29 +51,43 @@ export function CountryDetails({ allCountries }) {
       const borderCountry = allCountries.find(
         (country) => country.cca3 === borderCca3
       );
-      
+
       return (
-        <Link key={borderCca3} to={`/country/${borderCca3}`}>
-          {borderCountry.name.common}
-        </Link>
+        <li key={borderCca3} className={styles.countryNav}>
+          <Link to={`/country/${borderCca3}`}>{borderCountry.name.common}</Link>
+        </li>
       );
     });
   };
 
   return (
-    <article className={styles.page}>
-      <Link to="#" onClick={() => navigate(-1)}>🔙 Back</Link>
-      <img src={country.flags.svg} alt={`Flag of ${country.name.common}`} />
-      <h2>{country.name.common}</h2>
-      <p><strong>Native Name:</strong> {getNativeName(country)}</p>
-      <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
-      <p><strong>Region:</strong> {country.region}</p>
-      <p><strong>Sub Region:</strong> {country.subregion || "N/A"}</p>
-      <p><strong>Capital:</strong> {country.capital || "N/A"}</p>
-      <p><strong>Top Level Domain:</strong> {getTopLevelDomain(country)}</p>
-      <p><strong>Currencies:</strong> {getCurrency(country)}</p>
-      <p><strong>Languages:</strong> {getLanguages(country)}</p>
-      <strong>Border Countries:</strong> {getBorderCountries(country)}
+    <article className={styles.country}>
+      <Link className={styles.backLink} to="#" onClick={() => navigate(-1)}>
+      <img src={backIcon} alt="Previous page" className={styles.backIcon} />
+        Back
+      </Link>
+      <section className={styles.countryMolding}>
+        <figure className={styles.flagMolding}>
+          <img src={country.flags.svg} alt={`Flag of ${country.name.common}`} />
+        </figure>
+        <div className={styles.countryInfos}>
+          <h2>{country.name.common}</h2>
+          <p><strong>Native Name:</strong> {getNativeName(country)}</p>
+          <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
+          <p><strong>Region:</strong> {country.region}</p>
+          <p><strong>Sub Region:</strong> {country.subregion || "N/A"}</p>
+          <p><strong>Capital:</strong> {formatCapitals(country) || "N/A"}</p>
+        </div>
+        <div className={styles.countryInfos}>
+          <p><strong>Top Level Domain:</strong> {getTopLevelDomain(country)}</p>
+          <p><strong>Currencies:</strong> {getCurrency(country)}</p>
+          <p><strong>Languages:</strong> {getLanguages(country)}</p>
+        </div>
+        <div className={styles.countryBorders}>
+          <strong>Border Countries:</strong>
+          <ul className={styles.borderList}>{getBorderCountries(country)}</ul>
+        </div>
+      </section>
     </article>
   );
 }
