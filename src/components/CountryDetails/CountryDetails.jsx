@@ -53,10 +53,10 @@ export function CountryDetails({ allCountries }) {
   };
 
   return (
-    <div className={styles.test}>
-      <button onClick={() => navigate(-1)}>Back</button>
+    <article className={styles.page}>
+      <Link to="#" onClick={() => navigate(-1)}>🔙 Back</Link>
       <img src={country.flags.svg} alt={`Flag of ${country.name.common}`} />
-      <h1>{country.name.common}</h1>
+      <h2>{country.name.common}</h2>
       <p><strong>Native Name:</strong> {getNativeName(country)}</p>
       <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
       <p><strong>Region:</strong> {country.region}</p>
@@ -65,10 +65,8 @@ export function CountryDetails({ allCountries }) {
       <p><strong>Top Level Domain:</strong> {getTopLevelDomain(country)}</p>
       <p><strong>Currencies:</strong> {getCurrency(country)}</p>
       <p><strong>Languages:</strong> {getLanguages(country)}</p>
-      <div>
-        <strong>Border Countries:</strong> {getBorderCountries(country)}
-      </div>
-    </div>
+      <strong>Border Countries:</strong> {getBorderCountries(country)}
+    </article>
   );
 }
 
