@@ -3,8 +3,15 @@
 .menu {
   padding: 0.5rem;
   width: 45vw;
-  height: 5vh;
+  height: 3.5rem;
   border-radius: 5px;
   box-shadow: var(--primary-border);
   font-weight: 600;
+}
+
+@media (min-width: 480px) {
+  .menu {
+    height: auto;
+    width: 170px;
+  }
 }
