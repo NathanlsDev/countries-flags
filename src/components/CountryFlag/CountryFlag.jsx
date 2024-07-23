@@ -5,6 +5,12 @@ import styles from "./CountryFlag.module.css";
 
 export function CountryFlag({ country }) {
   const { name, flags, population, region, capital, cca3 } = country;
+
+  const formatCapitals = (capital) => {
+    if (!capital) return;
+    return capital.length > 1 ? capital.join(", ") : capital;
+  };
+
   return (
     <li className={styles.card}>
       <Link to={`/country/${cca3}`}>
@@ -27,7 +33,7 @@ export function CountryFlag({ country }) {
           </p>
           <p className={styles.text}>
             <strong>Capital: </strong>
-            {capital || "N/A"}
+            {formatCapitals(capital) || "N/A"}
           </p>
         </section>
       </Link>
