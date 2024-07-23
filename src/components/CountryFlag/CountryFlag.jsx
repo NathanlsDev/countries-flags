@@ -22,7 +22,7 @@ export function CountryFlag({ country }) {
           />
         </figure>
         <section className={styles.infos}>
-          <h1 className={styles.title}>{name.common}</h1>
+          <h2 className={styles.title}>{name.common}</h2>
           <p className={styles.text}>
             <strong>Population: </strong>
             {population.toLocaleString()}
