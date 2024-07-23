@@ -13,17 +13,20 @@
   --primary-border: #959da533 0px 8px 24px;
   --primary-background: #fafafa;
   --primary-color: #ffffff;
+
+  --primary-font: "Nunito Sans", sans-serif;
 }
 
 body {
   background-color: var(--primary-background);
+  color: var(--primary-text);
 }
 
 body,
 input,
 select,
 button {
-  font-family: "Nunito Sans";
+  font-family: var(--primary-font);
   font-size: 1rem;
   color: var(--primary-text);
 }
@@ -41,6 +44,11 @@ main {
 
 span {
   background-color: var(--primary-color);
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
 }
 
 a,
