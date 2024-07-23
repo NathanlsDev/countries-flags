@@ -1,5 +1,83 @@
 @import "../../index.css";
 
-.test{
-  border: 1px solid red;
+.country {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 10vh);
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.backLink {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  user-select: none;
+  width: 100px;
+  height: 40px;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.backIcon {
+  width: 25px;
+}
+
+.countryMolding {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.flagMolding {
+  margin-top: 4rem;
+  user-select: none;
+  display: flex;
+  max-width: 341px;
+  max-height: 300px;
+}
+
+h2 {
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.countryInfos {
+  line-height: 1.8;
+}
+
+.borderList {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  width: content;
+  overflow: scroll;
+  height: 60px;
+  margin-bottom: 2rem;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.countryNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 8px;
+  height: 40px;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  border-radius: 5px;
+  overflow-x: scroll;
 }
