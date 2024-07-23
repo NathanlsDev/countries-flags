@@ -60,9 +60,9 @@ export function CountryDetails({ allCountries }) {
     });
   };
 
-  return (
+  return ( 
     <article className={styles.country}>
-      <Link className={styles.backLink} to="#" onClick={() => navigate(-1)}>
+      <Link className={styles.backLink} to="#" onClick={() => navigate(-1)}>      
       <img src={backIcon} alt="Previous page" className={styles.backIcon} />
         Back
       </Link>
@@ -70,22 +70,28 @@ export function CountryDetails({ allCountries }) {
         <figure className={styles.flagMolding}>
           <img src={country.flags.svg} alt={`Flag of ${country.name.common}`} />
         </figure>
-        <div className={styles.countryInfos}>
-          <h2>{country.name.common}</h2>
-          <p><strong>Native Name:</strong> {getNativeName(country)}</p>
-          <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
-          <p><strong>Region:</strong> {country.region}</p>
-          <p><strong>Sub Region:</strong> {country.subregion || "N/A"}</p>
-          <p><strong>Capital:</strong> {formatCapitals(country) || "N/A"}</p>
-        </div>
-        <div className={styles.countryInfos}>
-          <p><strong>Top Level Domain:</strong> {getTopLevelDomain(country)}</p>
-          <p><strong>Currencies:</strong> {getCurrency(country)}</p>
-          <p><strong>Languages:</strong> {getLanguages(country)}</p>
-        </div>
-        <div className={styles.countryBorders}>
-          <strong>Border Countries:</strong>
-          <ul className={styles.borderList}>{getBorderCountries(country)}</ul>
+        <div className={styles.divisorLayer1}>
+          <div className={styles.divisorLayer2}>
+            <h2 className={styles.countryName}>{country.name.common}</h2>
+            <div className={styles.divisorLayer3}>
+              <div className={styles.countryInfos}>
+                <p><strong>Native Name:</strong> {getNativeName(country)}</p>
+                <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
+                <p><strong>Region:</strong> {country.region}</p>
+                <p><strong>Sub Region:</strong> {country.subregion || "N/A"}</p>
+                <p><strong>Capital:</strong> {formatCapitals(country) || "N/A"}</p>
+              </div>
+              <div className={styles.countryInfos}>
+                <p><strong>Top Level Domain:</strong> {getTopLevelDomain(country)}</p>
+                <p><strong>Currencies:</strong> {getCurrency(country)}</p>
+                <p><strong>Languages:</strong> {getLanguages(country)}</p>
+              </div>
+            </div>
+          </div>
+          <div className={styles.countryBorders}>
+            <strong>Border Countries:</strong>
+            <ul className={styles.borderList}>{getBorderCountries(country)}</ul>
+          </div>
         </div>
       </section>
     </article>
