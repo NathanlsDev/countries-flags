@@ -21,3 +21,9 @@
 .title {
   margin-bottom: 0.5rem;
 }
+
+@media (min-width: 1200px) {
+  .card {
+    width: 285px;
+  }
+}
