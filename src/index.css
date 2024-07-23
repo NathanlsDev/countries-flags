@@ -59,7 +59,7 @@ a:visited {
 
 .search-section {
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   gap: 2rem;
   padding: 0 1rem;
   margin-top: 2rem;
@@ -76,4 +76,19 @@ a:visited {
   margin-top: 2rem;
   gap: 4rem;
   padding: 1rem;
+}
+
+@media (min-width: 480px) {
+  .search-section {
+    margin: 0 auto;
+    margin-top: 2rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 720px) {
+  .search-section {
+    margin-top: 4rem;
+  }
 }
