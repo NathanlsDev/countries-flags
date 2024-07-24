@@ -5,6 +5,7 @@
   width: 45vw;
   height: 3.5rem;
   border-radius: 5px;
+  background-color: var(--primary-color);
   box-shadow: var(--primary-border);
   font-weight: 600;
 }

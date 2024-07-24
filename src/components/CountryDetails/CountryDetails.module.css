@@ -21,10 +21,11 @@
   padding: 0.5rem;
   cursor: pointer;
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: var(--secundary-border);
 }
 
-.backIcon {
+.mySvg {
+  color: var(--primary-text);
   width: 25px;
 }
 
@@ -82,7 +83,7 @@
   justify-content: center;
   align-items: center;
   user-select: none;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 8px;
+  box-shadow: var(--secundary-border);
   height: 40px;
   padding: 0.5rem 1rem;
   width: fit-content;
