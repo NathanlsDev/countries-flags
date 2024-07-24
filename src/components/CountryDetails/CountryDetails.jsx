@@ -1,6 +1,5 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import backIcon from "../../../public/arrow-back.svg";
 
 import styles from "./CountryDetails.module.css";
 
@@ -60,10 +59,25 @@ export function CountryDetails({ allCountries }) {
     });
   };
 
-  return ( 
+  return (
     <article className={styles.country}>
-      <Link className={styles.backLink} to="#" onClick={() => navigate(-1)}>      
-      <img src={backIcon} alt="Previous page" className={styles.backIcon} />
+      <Link className={styles.backLink} to="#" onClick={() => navigate(-1)}>
+        <svg
+          className={styles.mySvg}
+          xmlns="http://www.w3.org/2000/svg"
+          shapeRendering="geometricPrecision"
+          textRendering="geometricPrecision"
+          imageRendering="optimizeQuality"
+          fillRule="evenodd"
+          clipRule="evenodd"
+          viewBox="0 0 512 243.58"
+        >
+          <path
+            fill="currentColor"
+            fillRule="nonzero"
+            d="M138.43 243.58 0 122.84 140.47 0l20.92 23.91-94.92 83 445.53-.42v31.75l-445.54.41 92.89 81.02z"
+          />
+        </svg>
         Back
       </Link>
       <section className={styles.countryMolding}>
@@ -76,13 +90,14 @@ export function CountryDetails({ allCountries }) {
             <div className={styles.divisorLayer3}>
               <div className={styles.countryInfos}>
                 <p><strong>Native Name:</strong> {getNativeName(country)}</p>
-                <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
+                <p><strong>Population:</strong>{" "}{country.population.toLocaleString()}
+                </p>
                 <p><strong>Region:</strong> {country.region}</p>
                 <p><strong>Sub Region:</strong> {country.subregion || "N/A"}</p>
                 <p><strong>Capital:</strong> {formatCapitals(country) || "N/A"}</p>
               </div>
               <div className={styles.countryInfos}>
-                <p><strong>Top Level Domain:</strong> {getTopLevelDomain(country)}</p>
+                <p><strong>Top Level Domain:</strong>{" "}{getTopLevelDomain(country)}</p>
                 <p><strong>Currencies:</strong> {getCurrency(country)}</p>
                 <p><strong>Languages:</strong> {getLanguages(country)}</p>
               </div>

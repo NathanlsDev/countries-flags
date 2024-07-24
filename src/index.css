@@ -8,18 +8,27 @@
 
 :root {
   --secondary-color: #2b3945;
-  --secondary-background: #202c37;
   --primary-text: #111517;
   --primary-border: #959da533 0px 8px 24px;
+  --secundary-border: #959da533 0px 3px 8px;
   --primary-background: #fafafa;
   --primary-color: #ffffff;
 
   --primary-font: "Nunito Sans", sans-serif;
 }
 
+[data-theme="dark"] {
+  --primary-background: #202c37;
+  --primary-border: #1115175b 0px 8px 24px;
+  --secundary-border: #1115179d 0px 3px 8px;
+  --primary-color: #2b3945;
+  --primary-text: #ffffff;
+}
+
 body {
   background-color: var(--primary-background);
   color: var(--primary-text);
+  transition: all 0.3s ease-in-out;
 }
 
 body,
@@ -85,6 +94,10 @@ a:visited {
     flex-direction: row;
     justify-content: space-between;
   }
+
+  .flags-list {
+    margin-top: 4rem;
+  }
 }
 
 @media (min-width: 720px) {
@@ -101,7 +114,7 @@ a:visited {
   .flags-list {
     max-width: 1440px;
     margin: 0 auto;
-    margin-top: 4rem;
+    margin-top: 6rem;
     padding: 0;
   }
 }

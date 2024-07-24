@@ -4,8 +4,9 @@
   display: flex;
   border-radius: 8px;
   padding: 0.5rem;
-  background-color: white;
+  background-color: var(--primary-color);
   box-shadow: var(--primary-border);
+  color: var(--primary-text);
 }
 
 .icon {
@@ -16,10 +17,19 @@
 }
 
 .searchbar {
+  background-color: var(--primary-color);
   height: 5vh;
   width: 100%;
   font-size: 1rem;
   padding-left: 0.5rem;
+}
+
+::placeholder {
+  color: var(--primary-text);
+}
+
+::-ms-input-placeholder {
+  color: var(--primary-text);
 }
 
 @media (min-width: 480px) {
