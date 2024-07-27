@@ -1,12 +1,28 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
+import { getCountries } from "../../services/api";
 import styles from "./CountryDetails.module.css";
 
 export function CountryDetails({ allCountries }) {
   const { cca3 } = useParams();
   const navigate = useNavigate();
-  const country = allCountries.find((country) => country.cca3 === cca3);
+  const [country, setCountry] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let countries = allCountries;
+
+      if (!countries.length) {
+        countries = await getCountries();
+      }
+      const foundCountry = countries.find((country) => country.cca3 === cca3);
+      return foundCountry ? setCountry(foundCountry) : setCountry(null);
+    };
+
+    fetchData();
+  }, [allCountries, cca3]);
 
   if (!country) {
     return <div>Country not found</div>;
@@ -89,17 +105,34 @@ export function CountryDetails({ allCountries }) {
             <h2 className={styles.countryName}>{country.name.common}</h2>
             <div className={styles.divisorLayer3}>
               <div className={styles.countryInfos}>
-                <p><strong>Native Name:</strong> {getNativeName(country)}</p>
-                <p><strong>Population:</strong>{" "}{country.population.toLocaleString()}
+                <p>
+                  <strong>Native Name:</strong> {getNativeName(country)}
                 </p>
-                <p><strong>Region:</strong> {country.region}</p>
-                <p><strong>Sub Region:</strong> {country.subregion || "N/A"}</p>
-                <p><strong>Capital:</strong> {formatCapitals(country) || "N/A"}</p>
+                <p>
+                  <strong>Population:</strong>{" "}
+                  {country.population.toLocaleString()}
+                </p>
+                <p>
+                  <strong>Region:</strong> {country.region}
+                </p>
+                <p>
+                  <strong>Sub Region:</strong> {country.subregion || "N/A"}
+                </p>
+                <p>
+                  <strong>Capital:</strong> {formatCapitals(country) || "N/A"}
+                </p>
               </div>
               <div className={styles.countryInfos}>
-                <p><strong>Top Level Domain:</strong>{" "}{getTopLevelDomain(country)}</p>
-                <p><strong>Currencies:</strong> {getCurrency(country)}</p>
-                <p><strong>Languages:</strong> {getLanguages(country)}</p>
+                <p>
+                  <strong>Top Level Domain:</strong>{" "}
+                  {getTopLevelDomain(country)}
+                </p>
+                <p>
+                  <strong>Currencies:</strong> {getCurrency(country)}
+                </p>
+                <p>
+                  <strong>Languages:</strong> {getLanguages(country)}
+                </p>
               </div>
             </div>
           </div>
