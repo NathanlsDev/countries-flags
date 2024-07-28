@@ -1,15 +1,21 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 
 import { Header } from "./components/Header";
 import { Search } from "./components/Search/Search";
 import { Menu } from "./components/Menu/Menu";
 import { CountryFlag } from "./components/CountryFlag";
 import { CountryDetails } from "./components/CountryDetails";
+import { Loader } from "./components/Loader";
 
 import { getCountries } from "./services/api";
 
-function CountryFlagsApp() { 
+function CountryFlagsApp() {
   const [allCountries, setAllCountries] = useState([]);
   const [displayedCountries, setDisplayedCountries] = useState([]);
   const [offset, setOffset] = useState(0);
@@ -112,6 +118,7 @@ function CountryFlagsApp() {
             element={<CountryDetails allCountries={allCountries} />}
           />
         </Routes>
+        <Loader />
       </main>
     </>
   );
