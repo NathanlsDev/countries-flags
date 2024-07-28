@@ -22,6 +22,7 @@ function CountryFlagsApp() {
   const [selectedRegion, setSelectedRegion] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [showSearchSection, setShowSearchSection] = useState(true);
+  const [showLoader, setShowLoader] = useState(true);
 
   const limit = 8;
   const pathLocation = useLocation();
@@ -51,17 +52,20 @@ function CountryFlagsApp() {
   }, [offset, allCountries]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop ===
-        document.documentElement.offsetHeight
-      ) {
-        setOffset((prevOffset) => prevOffset + limit);
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        setTimeout(() => {
+          setOffset((prevOffset) => prevOffset + limit);
+        }, "500");
       }
-    };
+    });
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const loaderElement = document.querySelector("[data-id='loader']");
+    if (loaderElement) {
+      intersectionObserver.observe(loaderElement);
+    }
+
+    return () => intersectionObserver.disconnect();
   }, []);
 
   useEffect(() => {
@@ -82,6 +86,12 @@ function CountryFlagsApp() {
     return pathLocation.pathname !== "/"
       ? setShowSearchSection(false)
       : setShowSearchSection(true);
+  }, [pathLocation]);
+
+  useEffect(() => {
+    return pathLocation.pathname !== "/"
+      ? setShowLoader(false)
+      : setShowLoader(true);
   }, [pathLocation]);
 
   const handleSearch = (query) => {
@@ -118,7 +128,7 @@ function CountryFlagsApp() {
             element={<CountryDetails allCountries={allCountries} />}
           />
         </Routes>
-        <Loader />
+        {showLoader && <Loader />}
       </main>
     </>
   );
