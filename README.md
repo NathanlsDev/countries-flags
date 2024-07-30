@@ -4,7 +4,7 @@
 # Country Flags 🌍
   <div align="center">
     <a href="https://countries-flags-tau.vercel.app/" target="_blank">
-      <img src="../countries-flags/docs/design/desktop-preview.jpg" alt="imagem ilustrativa da aplicação countries flags" width="600"/>
+      <img src="https://raw.githubusercontent.com/NathanlsDev/countries-flags/main/docs/design/desktop-preview.jpg" alt="imagem ilustrativa da aplicação countries flags" width="600"/>
     </a>
   </div>
   
