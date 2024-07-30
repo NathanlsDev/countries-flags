@@ -1,10 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 
 import { Header } from "./components/Header";
 import { Search } from "./components/Search/Search";
@@ -17,7 +12,6 @@ import { getCountries } from "./services/api";
 
 function CountryFlagsApp() {
   const [allCountries, setAllCountries] = useState([]);
-  const [displayedCountries, setDisplayedCountries] = useState([]);
   const [offset, setOffset] = useState(0);
   const [selectedRegion, setSelectedRegion] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -27,29 +21,24 @@ function CountryFlagsApp() {
   const limit = 8;
   const pathLocation = useLocation();
 
-  useEffect(() => {
-    const fetchCountries = async () => {
-      const countries = await getCountries();
-      setAllCountries(countries);
-      setDisplayedCountries(countries.slice(0, limit));
-    };
+  const filteredCountries = () => {
+    return allCountries.filter((country) => {
+      return (
+        (selectedRegion === "" || country.region === selectedRegion) &&
+        (searchQuery === "" ||
+          country.name.common.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
+    });
+  };
 
-    fetchCountries();
+  const displayedCountries = filteredCountries().slice(0, offset + limit);
+
+  useEffect(() => {
+    getCountries()
+      .then((countries) => { setAllCountries(countries)})
+      .catch((error) => console.log("Error message:", error));
+    // .finally(() => {});
   }, []);
-
-  useEffect(() => {
-    if (offset === 0) return;
-
-    const loadMoreCountries = () => {
-      const moreCountries = filteredCountries().slice(offset, offset + limit);
-      setDisplayedCountries((prevCountries) => [
-        ...prevCountries,
-        ...moreCountries,
-      ]);
-    };
-
-    loadMoreCountries();
-  }, [offset, allCountries]);
 
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver((entries) => {
@@ -61,26 +50,12 @@ function CountryFlagsApp() {
     });
 
     const loaderElement = document.querySelector("[data-id='loader']");
+
     if (loaderElement) {
       intersectionObserver.observe(loaderElement);
     }
-
     return () => intersectionObserver.disconnect();
   }, []);
-
-  useEffect(() => {
-    setDisplayedCountries(filteredCountries().slice(0, limit));
-  }, [selectedRegion, searchQuery]);
-
-  const filteredCountries = () => {
-    return allCountries.filter((country) => {
-      return (
-        (selectedRegion === "" || country.region === selectedRegion) &&
-        (searchQuery === "" ||
-          country.name.common.toLowerCase().includes(searchQuery.toLowerCase()))
-      );
-    });
-  };
 
   useEffect(() => {
     return pathLocation.pathname !== "/"
