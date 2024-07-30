@@ -2,15 +2,20 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/nathanlsdev/countries-flags?style=for-the-badge)
 
 # Country Flags 🌍
-
+  <div align="center">
+    <a href="https://countries-flags-tau.vercel.app/" target="_blank">
+      <img src="../countries-flags/docs/design/desktop-preview.jpg" alt="imagem ilustrativa da aplicação countries flags" width="600"/>
+    </a>
+  </div>
+  
 ## Ajustes e melhorias
 
 O projeto ainda <strong>está em desenvolvimento</strong> e as próximas atualizações serão voltadas nas seguintes tarefas:
 
 - [✅] Corrigir erro 404 ao recarregar página de detalhes do país.
 
-- [ㅤ] Carregamento infinito em dispositivos mobile.
-  * Por algum motivo quando a aplicação é acessada através de um dispositivo mobile, a lista de países não está sendo carregada por completo, somente os 8 países iniciais. Acredito que, pela forma como foi implementado o evento de scroll.. 🪲🤔
+- [⚠️] Carregamento infinito em dispositivos mobile.
+  * Parcialmente resolvido, mas será reimplementado de uma forma mais eficiente.
 
 - [ㅤ] Separar a lógica da "view" dos componentes!
 - [ㅤ] Implementar feedback visual para resultados de buscas não encontrados, e rotas não existentes.
