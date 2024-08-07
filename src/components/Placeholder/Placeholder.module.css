@@ -1,0 +1,32 @@
+@import "../../index.css";
+
+.container {
+  width: 350px;
+  border-radius: 8px;
+  box-shadow: var(--primary-border);
+  background-color: var(--primary-color);
+}
+
+.image {
+  user-select: none;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  height: 200px;
+}
+
+.section {
+  padding: 2rem;
+}
+
+.div {
+  background-color: gray;
+  height: 20px;
+  border-radius: 8px;
+  margin-top: 18.7px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 285px;
+  }
+}
