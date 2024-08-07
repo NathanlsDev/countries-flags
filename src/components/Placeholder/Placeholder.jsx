@@ -5,7 +5,7 @@ export function Placeholder() {
   return (
     <li className={styles.container}>
       <figure>
-        <img className={styles.image} src={imgHolder} alt="paçoca" />
+        <img className={styles.image} src={imgHolder} alt="gray image template" />
       </figure>
       <section className={styles.section}>
         <div className={styles.div}></div>
